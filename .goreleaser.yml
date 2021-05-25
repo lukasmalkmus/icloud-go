@@ -1,0 +1,28 @@
+project_name: icloud-go
+
+builds:
+  - skip: true
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+milestones:
+  - repo:
+      owner: lukasmalkmus
+      name: icloud-go
+    close: true
+    fail_on_error: false
+
+release:
+  github:
+    owner: lukasmalkmus
+    name: icloud-go
+  prerelease: auto
+  name_template: "iCloud Go v{{.Version}}"
