@@ -72,8 +72,8 @@ $ openssl ec -in eckey.pem
 import "github.com/lukasmalkmus/icloud-go/icloud"
 
 var (
-	keyID = os.Getenv("ICLOUD_KEY_ID")
-	container   = os.Getenv("ICLOUD_CONTAINER")
+	keyID         = os.Getenv("ICLOUD_KEY_ID")
+	container     = os.Getenv("ICLOUD_CONTAINER")
 	rawPrivateKey = os.Getenv("ICLOUD_PRIVATE_KEY")
 )
 
@@ -91,18 +91,20 @@ if err != nil {
 
 // 3. Create a record.
 if _, err = client.Records.Modify(context.Background(), icloud.Public, icloud.RecordsRequest{
-	Operations: icloud.RecordOperation{
-		Type: icloud.Create,
-		Record: icloud.Record{
-			Type: "MyRecord",
-			Fields: icloud.Fields{
-				{
-					Name:  "MyField",
-					Value: "Hello, World!",
-				},
-				{
-					Name:  "MyOtherField",
-					Value: 1000,
+	Operations: []icloud.RecordOperation{
+		{
+			Type: icloud.Create,
+			Record: icloud.Record{
+				Type: "MyRecord",
+				Fields: icloud.Fields{
+					{
+						Name:  "MyField",
+						Value: "Hello, World!",
+					},
+					{
+						Name:  "MyOtherField",
+						Value: 1000,
+					},
 				},
 			},
 		},
